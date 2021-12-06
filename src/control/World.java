@@ -13,6 +13,7 @@ public class World {
 	private Random rd;
 	private ButtonPlayer[][] arrayButton;
 	private int[][] arrayBoom;// boom la so -1
+	private boolean isComplete;
 	private boolean [][] arrayBoolean;
 	private ButtonSmile buttonSmile;
 	private LableNumber lbTime, lbBoom;
@@ -41,21 +42,28 @@ public class World {
 				}
 			}
 		}
+		isComplete=true;
 	}
 	public boolean open(int w,int h) {
+		if(!isComplete) {
 		if(!arrayBoolean[w][h]) {
-		int number=arrayBoom[w][h];
-	if(number!=-1) {
-		arrayButton[w][h].setNumber(number);
-		arrayButton[w][h].repaint();
-		return true;
-	}
+			arrayBoolean[w][h]=true;
+			int number=arrayBoom[w][h];
+				if(number!=-1) {
+					arrayButton[w][h].setNumber(number);
+					arrayButton[w][h].repaint();
+					
+					return true;
+			}
 		}
 		if(arrayBoom[w][h]==-1) {
 		return false;
 	}else {
 		return true;
-	}
+	}}
+		else {
+			return false;
+		}
 		
 	}
 	
