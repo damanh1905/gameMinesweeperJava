@@ -46,6 +46,18 @@ public class ButtonPlayer extends JButton {
 		case 8:
 			g.drawImage(panelPlayer.getGamePanel().getGameFrame().getData().getListImage().get("b8"), 0, 0,getPreferredSize().width,getPreferredSize().height, null);
 				break;
+		case 9:
+			g.drawImage(panelPlayer.getGamePanel().getGameFrame().getData().getListImage().get("co"), 0, 0,getPreferredSize().width,getPreferredSize().height, null);
+				break;
+		case 10:
+			g.drawImage(panelPlayer.getGamePanel().getGameFrame().getData().getListImage().get("boom"), 0, 0,getPreferredSize().width,getPreferredSize().height, null);
+				break;
+		case 11:
+			g.drawImage(panelPlayer.getGamePanel().getGameFrame().getData().getListImage().get("boomRed"), 0, 0,getPreferredSize().width,getPreferredSize().height, null);
+				break;
+		case 12:
+			g.drawImage(panelPlayer.getGamePanel().getGameFrame().getData().getListImage().get("bommX"), 0, 0,getPreferredSize().width,getPreferredSize().height, null);
+				break;
 		default:
 			break;
 		}

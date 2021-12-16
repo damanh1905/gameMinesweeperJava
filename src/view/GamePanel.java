@@ -49,7 +49,7 @@ public class GamePanel  extends JPanel implements MouseListener{
 		ButtonPlayer[][] arrayButton=panelPlayer.getArrayButton();
 		for (int i = 0; i < arrayButton.length; i++) {
 			for (int j = 0; j < arrayButton[i].length; j++) {
-				if(e.getSource()==arrayButton[i][j] && e.getButton()==1 ) {
+				if(e.getSource()==arrayButton[i][j] && e.getButton()==1 && !world.getArrayCamCo()[i][j]) {
 				if( !world.open(i,j)) {
 					if(world.isComplete()) {
 						
@@ -62,7 +62,7 @@ public class GamePanel  extends JPanel implements MouseListener{
 					}else {
 						world.fullTrue();
 					}
-				}
+				
 				}else if(world.isEnd()) {
 					int option=JOptionPane.showConfirmDialog(this, "You win,play again?","notification",JOptionPane.YES_NO_OPTION);
 					if(option==JOptionPane.YES_OPTION) {
@@ -70,7 +70,11 @@ public class GamePanel  extends JPanel implements MouseListener{
 						new gameFrame(w,h,boom);
 					}
 				}
-				}}
+				}
+				}else if(e.getSource()==arrayButton[i][j] && e.getButton()==3) {
+					world.camCo(i, j);
+				}
+				}
 		}
 		
 	}
