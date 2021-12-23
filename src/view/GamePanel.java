@@ -74,6 +74,18 @@ public class GamePanel  extends JPanel implements MouseListener{
 				}else if(e.getSource()==arrayButton[i][j] && e.getButton()==3) {
 					world.camCo(i, j);
 				}
+				if(e.getSource() == arrayButton[i][j] && e.getClickCount()==2 && world.getArrayBoolean()[i][j]) {
+					if(!world.doubleClick(i,j)){
+						int option=JOptionPane.showConfirmDialog(this, "You lose,play again?","notification",JOptionPane.YES_NO_OPTION);
+						if(option==JOptionPane.YES_OPTION) {
+							gameFrame.setVisible(false);
+							new gameFrame(w,h,boom);
+						}else {
+							world.fullTrue();
+						}	
+					}
+					
+				}
 				}
 		}
 		

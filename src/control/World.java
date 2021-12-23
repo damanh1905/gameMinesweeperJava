@@ -40,7 +40,43 @@ public class World {
 		}
 
 	}
-
+	public boolean doubleClick(int i ,int j) {
+		boolean coMin=false;
+		for (int l = i - 1; l <= i + 1; l++) {
+			for (int k = j - 1; k <= j + 1; k++) {
+				if (l >= 0 && l <= arrayBoom.length - 1 && k >= 0 && k <= arrayBoom[i].length - 1) {
+					if (!arrayCamCo[l][k]) {
+						if(arrayBoom[l][k]==-1) {
+							coMin=true;
+							arrayButton[l][k].setNumber(12);
+							arrayButton[l][k].repaint();
+							arrayBoolean[l][k]=true;
+						}
+						else if(!arrayBoolean[l][k]) {
+							arrayButton[l][k].setNumber(arrayBoom[l][k]);
+							arrayButton[l][k].repaint();
+							arrayBoolean[l][k]=true;
+						}	
+						}
+						
+					
+				}
+			}
+		}
+	if(coMin) {
+		for (int j2 = 0; j2 < arrayBoolean.length; j2++) {
+			for (int k = 0; k < arrayBoolean[i].length; k++) {
+				if(arrayBoom[j2][k]==-1 && !arrayBoolean[j2][k]) {
+					arrayButton[j2][k].setNumber(10);
+					arrayButton[j2][k].repaint();
+					
+				}
+			}
+		}
+	return false;
+	}
+	return true;
+	}
 	public void fullTrue() {
 		for (int i = 0; i < arrayBoolean.length; i++) {
 			for (int j = 0; j < arrayBoolean[i].length; j++) {
@@ -244,6 +280,14 @@ public class World {
 
 	public void setArrayCamCo(boolean[][] arrayCamCo) {
 		this.arrayCamCo = arrayCamCo;
+	}
+
+	public boolean[][] getArrayBoolean() {
+		return arrayBoolean;
+	}
+
+	public void setArrayBoolean(boolean[][] arrayBoolean) {
+		this.arrayBoolean = arrayBoolean;
 	}
 
 }
