@@ -7,6 +7,7 @@ import javax.swing.JButton;
 
 import view.ButtonPlayer;
 import view.ButtonSmile;
+import view.GamePanel;
 import view.LableNumber;
 
 public class World {
@@ -16,14 +17,17 @@ public class World {
 	private int[][] arrayBoom;// boom la so -1
 	private boolean isComplete;
 	private boolean isEnd;
+	private int co;
 
 	private boolean[][] arrayBoolean;
 	private ButtonSmile buttonSmile;
 	private LableNumber lbTime, lbBoom;
 	private int boom;
+	private GamePanel gamePanel;
 
-	public World(int w, int h, int boom) {
+	public World(int w, int h, int boom,GamePanel gamePanel) {
 		this.boom = boom;
+		this.gamePanel= gamePanel;
 		arrayButton = new ButtonPlayer[w][h];
 		arrayBoom = new int[w][h];
 		arrayBoolean = new boolean[w][h];
@@ -90,13 +94,17 @@ public class World {
 	public void camCo(int i,int j) {
 		if(!arrayBoolean[i][j]) {
 			if(arrayCamCo[i][j]) {
+				co--;
 				arrayCamCo[i][j]=false;
 				arrayButton[i][j].setNumber(-1);
 				arrayButton[i][j].repaint();
-			}else {
+				gamePanel.getNotification().upDate();
+			}else if(co <boom) {
+				co++;
 				arrayCamCo[i][j]=true;
 				arrayButton[i][j].setNumber(9);
 				arrayButton[i][j].repaint();
+				gamePanel.getNotification().upDate();
 			}
 			
 		}
@@ -288,6 +296,12 @@ public class World {
 
 	public void setArrayBoolean(boolean[][] arrayBoolean) {
 		this.arrayBoolean = arrayBoolean;
+	}
+	public int getCo() {
+		return co;
+	}
+	public void setCo(int co) {
+		this.co = co;
 	}
 
 }

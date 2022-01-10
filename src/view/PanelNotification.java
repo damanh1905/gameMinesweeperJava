@@ -23,8 +23,23 @@ public class PanelNotification extends JPanel {
 			add(p12=new JPanel(),BorderLayout.EAST);
 			add(p13=new JPanel(),BorderLayout.CENTER);
 			p11.add(lbBoom=new LableNumber(this,"000"));
+			upDate();
 			p12.add(lbTime=new LableNumber(this,"000"));
 			p13.add(buttonSmile=new ButtonSmile(this));
+	}
+	public void upDate() {
+		String number = String .valueOf(gamePanel.getBoom()- gamePanel.getWorld().getCo());
+		if(number.length() ==1 ) { 
+			lbBoom.setNumber("00"+ number);
+			
+		}else if(number.length() ==2) {
+			lbBoom.setNumber("0"+ number);
+			
+		}else {
+			lbBoom.setNumber("0"+ number);
+		}
+		lbBoom.repaint();
+		
 	}
 	public GamePanel getGamePanel() {
 		return gamePanel;

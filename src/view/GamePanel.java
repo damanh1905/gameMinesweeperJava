@@ -30,7 +30,7 @@ public class GamePanel  extends JPanel implements MouseListener{
 		this.h=h;
 		this.boom=boom;
 		this.gameFrame=gameFrame;
-		world=new World(w, h, boom);
+		world=new World(w, h, boom,this);
 		setLayout(new BorderLayout(20,20));
 		
 		
@@ -129,6 +129,24 @@ public class GamePanel  extends JPanel implements MouseListener{
 	}
 	public void setGameFrame(gameFrame gameFrame) {
 		this.gameFrame = gameFrame;
+	}
+	public int getBoom() {
+		return boom;
+	}
+	public void setBoom(int boom) {
+		this.boom = boom;
+	}
+	public PanelNotification getNotification() {
+		return notification;
+	}
+	public void setNotification(PanelNotification notification) {
+		this.notification = notification;
+	}
+	public PanelPlayer getPanelPlayer() {
+		return panelPlayer;
+	}
+	public void setPanelPlayer(PanelPlayer panelPlayer) {
+		this.panelPlayer = panelPlayer;
 	}
 	
 
