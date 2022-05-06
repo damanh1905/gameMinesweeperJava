@@ -13,7 +13,7 @@ import view.LableNumber;
 public class World {
 	private Random rd;
 	private ButtonPlayer[][] arrayButton;
-	private boolean [][] arrayCamCo;
+	private boolean[][] arrayCamCo;
 	private int[][] arrayBoom;// boom la so -1
 	private boolean isComplete;
 	private boolean isEnd;
@@ -25,9 +25,9 @@ public class World {
 	private int boom;
 	private GamePanel gamePanel;
 
-	public World(int w, int h, int boom,GamePanel gamePanel) {
+	public World(int w, int h, int boom, GamePanel gamePanel) {
 		this.boom = boom;
-		this.gamePanel= gamePanel;
+		this.gamePanel = gamePanel;
 		arrayButton = new ButtonPlayer[w][h];
 		arrayBoom = new int[w][h];
 		arrayBoolean = new boolean[w][h];
@@ -44,43 +44,43 @@ public class World {
 		}
 
 	}
-	public boolean doubleClick(int i ,int j) {
-		boolean coMin=false;
+
+	public boolean doubleClick(int i, int j) {
+		boolean coMin = false;
 		for (int l = i - 1; l <= i + 1; l++) {
 			for (int k = j - 1; k <= j + 1; k++) {
 				if (l >= 0 && l <= arrayBoom.length - 1 && k >= 0 && k <= arrayBoom[i].length - 1) {
 					if (!arrayCamCo[l][k]) {
-						if(arrayBoom[l][k]==-1) {
-							coMin=true;
+						if (arrayBoom[l][k] == -1) {
+							coMin = true;
 							arrayButton[l][k].setNumber(12);
 							arrayButton[l][k].repaint();
-							arrayBoolean[l][k]=true;
-						}
-						else if(!arrayBoolean[l][k]) {
+							arrayBoolean[l][k] = true;
+						} else if (!arrayBoolean[l][k]) {
 							arrayButton[l][k].setNumber(arrayBoom[l][k]);
 							arrayButton[l][k].repaint();
-							arrayBoolean[l][k]=true;
-						}	
+							arrayBoolean[l][k] = true;
 						}
-						
-					
+					}
+
 				}
 			}
 		}
-	if(coMin) {
-		for (int j2 = 0; j2 < arrayBoolean.length; j2++) {
-			for (int k = 0; k < arrayBoolean[i].length; k++) {
-				if(arrayBoom[j2][k]==-1 && !arrayBoolean[j2][k]) {
-					arrayButton[j2][k].setNumber(10);
-					arrayButton[j2][k].repaint();
-					
+		if (coMin) {
+			for (int j2 = 0; j2 < arrayBoolean.length; j2++) {
+				for (int k = 0; k < arrayBoolean[i].length; k++) {
+					if (arrayBoom[j2][k] == -1 && !arrayBoolean[j2][k]) {
+						arrayButton[j2][k].setNumber(10);
+						arrayButton[j2][k].repaint();
+
+					}
 				}
 			}
+			return false;
 		}
-	return false;
+		return true;
 	}
-	return true;
-	}
+
 	public void fullTrue() {
 		for (int i = 0; i < arrayBoolean.length; i++) {
 			for (int j = 0; j < arrayBoolean[i].length; j++) {
@@ -89,39 +89,40 @@ public class World {
 				}
 			}
 		}
-		
+
 	}
-	public void camCo(int i,int j) {
-		if(!arrayBoolean[i][j]) {
-			if(arrayCamCo[i][j]) {
+
+	public void camCo(int i, int j) {
+		if (!arrayBoolean[i][j]) {
+			if (arrayCamCo[i][j]) {
 				co--;
-				arrayCamCo[i][j]=false;
+				arrayCamCo[i][j] = false;
 				arrayButton[i][j].setNumber(-1);
 				arrayButton[i][j].repaint();
 				gamePanel.getNotification().upDate();
-			}else if(co <boom) {
+			} else if (co < boom) {
 				co++;
-				arrayCamCo[i][j]=true;
+				arrayCamCo[i][j] = true;
 				arrayButton[i][j].setNumber(9);
 				arrayButton[i][j].repaint();
 				gamePanel.getNotification().upDate();
 			}
-			
+
 		}
 	}
+
 	public boolean open(int i, int j) {
-			
-			
+
 		if (!isComplete && !isEnd) {
-		
+
 			if (!arrayBoolean[i][j]) {
 				if (arrayBoom[i][j] == 0) {
 					arrayBoolean[i][j] = true;
 					arrayButton[i][j].setNumber(0);
 					arrayButton[i][j].repaint();
-					if(checkWin()) {
-						isEnd=true;
-						fullTrue();
+					if (checkWin()) {
+						isEnd = true;
+						
 						return false;
 					}
 
@@ -130,18 +131,23 @@ public class World {
 							if (l >= 0 && l <= arrayBoom.length - 1 && k >= 0 && k <= arrayBoom[i].length - 1) {
 								if (!arrayBoolean[l][k]) {
 									open(l, k);
-									
+
 								}
 							}
 						}
+					}
+					if (checkWin()) {
+						isEnd = true;
+					
+						return false;
 					}
 				} else {
 
 					arrayBoolean[i][j] = true;
 					int number = arrayBoom[i][j];
-					if(checkWin()) {
-						isEnd=true;
-						fullTrue();
+					if (checkWin()) {
+						isEnd = true;
+					
 						return false;
 					}
 					if (number != -1) {
@@ -150,7 +156,7 @@ public class World {
 
 						return true;
 					}
-					
+
 				}
 			}
 			if (arrayBoom[i][j] == -1) {
@@ -159,7 +165,7 @@ public class World {
 				isComplete = true;
 				for (int j2 = 0; j2 < arrayBoolean.length; j2++) {
 					for (int k = 0; k < arrayBoolean.length; k++) {
-						if(arrayBoom[j2][k]==-1 && !arrayBoolean[j2][k]) {
+						if (arrayBoom[j2][k] == -1 && !arrayBoolean[j2][k]) {
 							arrayButton[j2][k].setNumber(10);
 							arrayButton[j2][k].repaint();
 						}
@@ -171,7 +177,7 @@ public class World {
 			}
 		} else
 			return false;
-		
+
 	}
 
 //	check win
@@ -297,9 +303,11 @@ public class World {
 	public void setArrayBoolean(boolean[][] arrayBoolean) {
 		this.arrayBoolean = arrayBoolean;
 	}
+
 	public int getCo() {
 		return co;
 	}
+
 	public void setCo(int co) {
 		this.co = co;
 	}

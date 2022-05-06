@@ -15,9 +15,16 @@ public class LableNumber extends JLabel {
 	}
 	@Override
 	public void paint(Graphics g) {
+		if(number.equals("vocung")) {
+			g.drawImage(panelNotification.getGamePanel().getGameFrame().getData().getListImage().get("vocung"), 0, 0,26,46, null);
+			g.drawImage(panelNotification.getGamePanel().getGameFrame().getData().getListImage().get("vocung"), 26, 0,26,46, null);
+			g.drawImage(panelNotification.getGamePanel().getGameFrame().getData().getListImage().get("vocung"), 52, 0,26,46, null);
+		}else {
+			
 		g.drawImage(panelNotification.getGamePanel().getGameFrame().getData().getListImage().get(String.valueOf(number.charAt(0))), 0, 0,26,46, null);
 		g.drawImage(panelNotification.getGamePanel().getGameFrame().getData().getListImage().get(String.valueOf(number.charAt(1))), 26, 0,26,46, null);
 		g.drawImage(panelNotification.getGamePanel().getGameFrame().getData().getListImage().get(String.valueOf(number.charAt(2))), 52, 0,26,46, null);
+	}
 	}
 	public PanelNotification getPanelNotification() {
 		return panelNotification;

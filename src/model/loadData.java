@@ -17,6 +17,10 @@ public class loadData {
 			listImage.put("title", img.getSubimage(0, 84, 114, 25));
 			listImage.put("nouse", img.getSubimage(0, 39, 16, 16));
 			listImage.put("Smile", img.getSubimage(0, 55, 26, 26));
+			listImage.put("SmilePress", img.getSubimage(26, 55, 26, 26));
+			listImage.put("SmileLose", img.getSubimage(77, 55, 26, 26));
+			listImage.put("SmilePressPlay", img.getSubimage(52, 55, 26, 26));
+			listImage.put("SmileWin", img.getSubimage(104, 55, 26, 26));
 			listImage.put("co", img.getSubimage(16, 39, 16, 16));
 			listImage.put("boomRed", img.getSubimage(32, 39, 16, 16));
 			listImage.put("boomX", img.getSubimage(48, 39, 16, 16));

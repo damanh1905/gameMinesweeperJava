@@ -24,6 +24,7 @@ public class PanelPlayer extends JPanel {
 		}
 		
 	}
+
 	public GamePanel getGamePanel() {
 		return gamePanel;
 	}
